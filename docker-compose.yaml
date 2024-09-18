@@ -1,0 +1,24 @@
+name: cdv-app
+services:
+  frontend:
+    image: cdv-ui
+    container_name: cdv-ui
+    build:
+      context: ./UI
+    ports:
+      - 4200:4200
+    networks:
+      - cdv-network
+  backend:
+    image: cdv-api
+    container_name: cdv-api
+    build:
+      context: ./WebApi
+    ports:
+      - 8080:8080
+    networks:
+      - cdv-network
+
+networks:
+  cdv-network:
+    external: true

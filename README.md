@@ -1,0 +1,1 @@
+First project using Angular 18 and .NET Core 8
