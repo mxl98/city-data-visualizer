@@ -1,3 +1,6 @@
+using WebApi.Controllers.DataController;
+using WebApi.Services.ExternalApiService;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -14,6 +17,10 @@ builder.Services.AddCors(options =>
               .AllowAnyMethod();
     });
 });
+
+builder.Services.AddHttpClient<IExternalApiService, ExternalApiService>();
+builder.Services.AddScoped<DataController>();
+builder.Services.AddControllers();
 
 var app = builder.Build();
 
@@ -42,10 +49,28 @@ app.MapGet("/weatherforecast", () =>
             summaries[Random.Shared.Next(summaries.Length)]
         ))
         .ToArray();
+    
     return forecast;
 })
 .WithName("GetWeatherForecast")
 .WithOpenApi();
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+
+    try
+    {
+        string url = "https://data.montreal.ca/dataset/4604afb7-a7c4-4626-a3ca-e136158133f2/resource/cbdca706-569e-4b4a-805d-9af73af03b14/download/piscines.csv";
+        var dataController = services.GetRequiredService<DataController>();
+        var data = await dataController.FetchFromExternalApi(url);
+        Console.WriteLine($"Fetched data: { data }");
+    }
+    catch (Exception e)
+    {
+        Console.WriteLine($"Error occured: { e.Message }");
+    }
+}
 
 app.Run();
 
