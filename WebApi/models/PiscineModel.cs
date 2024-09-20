@@ -1,4 +1,4 @@
-public class PiscineModel 
+public class PiscineModel : IFacilityModel
 {
     public required int Id { set; get; }
     public required string Type { set; get; }
