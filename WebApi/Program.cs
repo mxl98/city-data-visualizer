@@ -1,5 +1,6 @@
 using WebApi.Controllers.DataController;
 using WebApi.Services.ExternalApiService;
+using WebApi.Static.UrlsConfig;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +18,8 @@ builder.Services.AddCors(options =>
               .AllowAnyMethod();
     });
 });
+
+builder.Services.Configure<UrlsConfig>(builder.Configuration.GetSection("SourceUrls"));
 
 builder.Services.AddHttpClient<IExternalApiService, ExternalApiService>();
 builder.Services.AddScoped<DataController>();
@@ -63,7 +66,9 @@ using (var scope = app.Services.CreateScope())
     {
         string url = "https://data.montreal.ca/dataset/4604afb7-a7c4-4626-a3ca-e136158133f2/resource/cbdca706-569e-4b4a-805d-9af73af03b14/download/piscines.csv";
         var dataController = services.GetRequiredService<DataController>();
-        var data = await dataController.FetchFromExternalApi(url);
+        var urls = builder.Configuration.GetSection("SourceUrls").Get<Dictionary<string, string>>() ?? new Dictionary<string, string>();
+        string firstUrl = urls["piscines"];
+        var data = await dataController.FetchFromExternalApi(firstUrl);
         Console.WriteLine($"Fetched data: { data }");
     }
     catch (Exception e)
