@@ -1,6 +1,6 @@
 using WebApi.Controllers.DataController;
 using WebApi.Services.ExternalApiService;
-using WebApi.Static.UrlsConfig;
+using WebApi.Static.SourceUrlsOptions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,7 +19,7 @@ builder.Services.AddCors(options =>
     });
 });
 
-builder.Services.Configure<UrlsConfig>(builder.Configuration.GetSection("SourceUrls"));
+builder.Services.Configure<SourceUrlsOptions>(builder.Configuration.GetSection(SourceUrlsOptions.SectionName));
 
 builder.Services.AddHttpClient<IExternalApiService, ExternalApiService>();
 builder.Services.AddScoped<DataController>();
@@ -66,7 +66,7 @@ using (var scope = app.Services.CreateScope())
     {
         Dictionary<string, string> dataDictionary = new Dictionary<string, string>();
         var dataController = services.GetRequiredService<DataController>();
-        var urls = builder.Configuration.GetSection("SourceUrls").Get<Dictionary<string, string>>() ?? new Dictionary<string, string>();
+        var urls = builder.Configuration.GetSection(SourceUrlsOptions.SectionName).Get<Dictionary<string, string>>() ?? new Dictionary<string, string>();
         foreach (var url in urls) {
             var data = await dataController.FetchFromExternalApi(url.Value);
             dataDictionary.Add(url.Key, data);
