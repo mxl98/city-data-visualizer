@@ -64,11 +64,14 @@ using (var scope = app.Services.CreateScope())
 
     try
     {
+        Dictionary<string, string> dataDictionary = new Dictionary<string, string>();
         var dataController = services.GetRequiredService<DataController>();
         var urls = builder.Configuration.GetSection("SourceUrls").Get<Dictionary<string, string>>() ?? new Dictionary<string, string>();
-        string firstUrl = urls["piscines"];
-        var data = await dataController.FetchFromExternalApi(firstUrl);
-        Console.WriteLine($"Fetched data: { data }");
+        foreach (var url in urls) {
+            var data = await dataController.FetchFromExternalApi(url.Value);
+            dataDictionary.Add(url.Key, data);
+            Console.WriteLine($"Fetched data: { url.Key }\n{ data }");
+        }
     }
     catch (Exception e)
     {
