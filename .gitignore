@@ -1,2 +1,5 @@
 WebApi/bin/
 WebApi/obj/
+/bin/
+/obj/
+/out/

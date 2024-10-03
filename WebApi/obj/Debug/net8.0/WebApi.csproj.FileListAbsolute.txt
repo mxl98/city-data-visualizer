@@ -32,3 +32,4 @@ C:\Users\aflma\Documents\projects\ng_net_project1\WebApi\obj\Debug\net8.0\WebApi
 C:\Users\aflma\Documents\projects\ng_net_project1\WebApi\obj\Debug\net8.0\WebApi.genruntimeconfig.cache
 C:\Users\aflma\Documents\projects\ng_net_project1\WebApi\obj\Debug\net8.0\ref\WebApi.dll
 C:\Users\aflma\Documents\projects\ng_net_project1\WebApi\obj\Debug\net8.0\WebApi.sourcelink.json
+c:\Users\aflma\Documents\projects\ng_net_project1\WebApi\bin\Debug\net8.0\static\sourceurls.json

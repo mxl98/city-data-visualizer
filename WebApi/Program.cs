@@ -1,6 +1,6 @@
 using WebApi.Controllers.DataController;
 using WebApi.Services.ExternalApiService;
-using WebApi.Static.SourceUrlsOptions;
+using WebApi.Services.JsonParserService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,10 +19,9 @@ builder.Services.AddCors(options =>
     });
 });
 
-builder.Services.Configure<SourceUrlsOptions>(builder.Configuration.GetSection(SourceUrlsOptions.SectionName));
-
 builder.Services.AddHttpClient<IExternalApiService, ExternalApiService>();
 builder.Services.AddScoped<DataController>();
+builder.Services.AddScoped<IJsonParserService, JsonParserService>();
 builder.Services.AddControllers();
 
 var app = builder.Build();
@@ -64,13 +63,14 @@ using (var scope = app.Services.CreateScope())
 
     try
     {
-        Dictionary<string, string> dataDictionary = new Dictionary<string, string>();
         var dataController = services.GetRequiredService<DataController>();
-        var urls = builder.Configuration.GetSection(SourceUrlsOptions.SectionName).Get<Dictionary<string, string>>() ?? new Dictionary<string, string>();
-        foreach (var url in urls) {
-            var data = await dataController.FetchFromExternalApi(url.Value);
-            dataDictionary.Add(url.Key, data);
-            Console.WriteLine($"Fetched data: { url.Key }\n{ data }");
+        var SourceUrls = dataController.GetSourceUrls();
+        
+        foreach(var pair in SourceUrls) 
+        {
+            Console.WriteLine($"Title: { pair.Key }");
+            Console.WriteLine($"Url: { pair.Value }");
+            Console.WriteLine(await dataController.FetchFromExternalApi(pair.Value));
         }
     }
     catch (Exception e)
