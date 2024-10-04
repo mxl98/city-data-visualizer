@@ -57,34 +57,35 @@ app.MapGet("/weatherforecast", () =>
 .WithName("GetWeatherForecast")
 .WithOpenApi();
 
-app.MapGet("/api/update_db", () =>
+app.MapGet("/api/update_db", async () =>
 {
-    return "Hello! Updating DB";
+    var data = String.Empty;
+
+    using (var scope = app.Services.CreateScope())
+    {
+        var services = scope.ServiceProvider;
+
+        try
+        {
+            var dataController = services.GetRequiredService<DataController>();
+            var SourceUrls = dataController.GetSourceUrls();
+            
+            foreach(var pair in SourceUrls) 
+            {
+                Console.WriteLine($"Title: { pair.Key }");
+                Console.WriteLine($"Url: { pair.Value }");
+                data = await dataController.FetchFromExternalApi(pair.Value);
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine($"Error occured: { e.Message }");
+        }
+    }
+    return "Database updated!";
 })
 .WithName("UpdateDB")
 .WithOpenApi();
-
-using (var scope = app.Services.CreateScope())
-{
-    var services = scope.ServiceProvider;
-
-    try
-    {
-        var dataController = services.GetRequiredService<DataController>();
-        var SourceUrls = dataController.GetSourceUrls();
-        
-        foreach(var pair in SourceUrls) 
-        {
-            Console.WriteLine($"Title: { pair.Key }");
-            Console.WriteLine($"Url: { pair.Value }");
-            Console.WriteLine(await dataController.FetchFromExternalApi(pair.Value));
-        }
-    }
-    catch (Exception e)
-    {
-        Console.WriteLine($"Error occured: { e.Message }");
-    }
-}
 
 app.Run();
 
