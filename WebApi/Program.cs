@@ -57,6 +57,13 @@ app.MapGet("/weatherforecast", () =>
 .WithName("GetWeatherForecast")
 .WithOpenApi();
 
+app.MapGet("/api/update_db", () =>
+{
+    return "Hello! Updating DB";
+})
+.WithName("UpdateDB")
+.WithOpenApi();
+
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
