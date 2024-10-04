@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using WebApi.Services.JsonParserService;
+using System.IO;
 using WebApi.Static.SourceUrlsOptions;
 
 namespace WebApi.Controllers.DataController {
@@ -30,6 +30,20 @@ namespace WebApi.Controllers.DataController {
             }
 
             return SourceUrlsOptions.SourceUrls;
+        }
+
+        public void WriteFile(string data, KeyValuePair<string, string> pair)
+        {
+            try
+            {
+                string extension = Path.GetExtension(pair.Value);
+                string filepath = Path.Combine([Directory.GetCurrentDirectory(), "db\\", $"{ pair.Key }{ extension }"]);
+                System.IO.File.WriteAllText(filepath, data);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"DataController.WriteFile - Error occured: { e.Message }");
+            }
         }
     }
 }

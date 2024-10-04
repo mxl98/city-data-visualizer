@@ -75,11 +75,12 @@ app.MapGet("/api/update_db", async () =>
                 Console.WriteLine($"Title: { pair.Key }");
                 Console.WriteLine($"Url: { pair.Value }");
                 data = await dataController.FetchFromExternalApi(pair.Value);
+                dataController.WriteFile(data, pair);
             }
         }
         catch (Exception e)
         {
-            Console.WriteLine($"Error occured: { e.Message }");
+            Console.WriteLine($"Program - Error occured: { e.Message }");
         }
     }
     return "Database updated!";
