@@ -3,9 +3,9 @@ using System.Text.Json;
 
 namespace WebApi.Services.JsonParserService
 {
-    public class JsonParserService : IJsonParserService
+    public class JsonParserService : IParserService
     {
-        public T ParseJsonFile<T>(string filepath) where T : class
+        public T ParseFile<T>(string filepath) where T : class
         {
             if (!File.Exists(filepath)) 
             {

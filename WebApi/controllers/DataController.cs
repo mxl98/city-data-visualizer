@@ -6,9 +6,9 @@ namespace WebApi.Controllers.DataController {
     public class DataController : ControllerBase
     {
         private readonly IExternalApiService _externalApiService;
-        private readonly IJsonParserService _jsonParserService;
+        private readonly IParserService _jsonParserService;
 
-        public DataController(IExternalApiService externalApiService, IJsonParserService jsonParserService) {
+        public DataController(IExternalApiService externalApiService, IParserService jsonParserService) {
             _externalApiService = externalApiService;
             _jsonParserService = jsonParserService;
         }
@@ -22,7 +22,7 @@ namespace WebApi.Controllers.DataController {
         public Dictionary<string, string> GetSourceUrls()
         {
             var filepath = Path.Combine(Directory.GetCurrentDirectory(), "static\\sourceurls.json");
-            var SourceUrlsOptions = _jsonParserService.ParseJsonFile<SourceUrlsOptions>(filepath);
+            var SourceUrlsOptions = _jsonParserService.ParseFile<SourceUrlsOptions>(filepath);
 
             if (SourceUrlsOptions == null || SourceUrlsOptions.SourceUrls == null)
             {

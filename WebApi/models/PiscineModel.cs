@@ -2,6 +2,7 @@ public class PiscineModel : IFacilityModel
 {
     public required int Id { set; get; }
     public required string Type { set; get; }
+    public required string Nom { set; get; }
     public required string Arrondissement { set; get; }
     public required string Adresse { set; get; }
     public required string Propriete { set; get; }
