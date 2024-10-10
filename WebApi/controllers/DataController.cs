@@ -6,11 +6,11 @@ namespace WebApi.Controllers.DataController {
     public class DataController : ControllerBase
     {
         private readonly IExternalApiService _externalApiService;
-        private readonly IParserService _jsonParserService;
+        private readonly IParserService _parserService;
 
-        public DataController(IExternalApiService externalApiService, IParserService jsonParserService) {
+        public DataController(IExternalApiService externalApiService, IParserService parserService) {
             _externalApiService = externalApiService;
-            _jsonParserService = jsonParserService;
+            _parserService = parserService;
         }
 
         public async Task<string> FetchFromExternalApi(string url)
@@ -22,7 +22,7 @@ namespace WebApi.Controllers.DataController {
         public Dictionary<string, string> GetSourceUrls()
         {
             var filepath = Path.Combine(Directory.GetCurrentDirectory(), "static\\sourceurls.json");
-            var SourceUrlsOptions = _jsonParserService.ParseFile<SourceUrlsOptions>(filepath);
+            var SourceUrlsOptions = _parserService.ParseFile<SourceUrlsOptions>(filepath);
 
             if (SourceUrlsOptions == null || SourceUrlsOptions.SourceUrls == null)
             {
