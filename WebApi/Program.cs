@@ -21,7 +21,7 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddHttpClient<IExternalApiService, ExternalApiService>();
 builder.Services.AddScoped<DataController>();
-builder.Services.AddScoped<IParserService, JsonParserService>();
+builder.Services.AddScoped<IJsonParserService, JsonParserService>();
 builder.Services.AddControllers();
 
 var app = builder.Build();

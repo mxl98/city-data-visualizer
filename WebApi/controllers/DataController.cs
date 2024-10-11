@@ -6,9 +6,9 @@ namespace WebApi.Controllers.DataController {
     public class DataController : ControllerBase
     {
         private readonly IExternalApiService _externalApiService;
-        private readonly IParserService _parserService;
+        private readonly IJsonParserService _parserService;
 
-        public DataController(IExternalApiService externalApiService, IParserService parserService) {
+        public DataController(IExternalApiService externalApiService, IJsonParserService parserService) {
             _externalApiService = externalApiService;
             _parserService = parserService;
         }
@@ -17,6 +17,11 @@ namespace WebApi.Controllers.DataController {
         {
             var data = await _externalApiService.GetDataFromApiAsync(url);
             return data;
+        }
+
+        public void ReadFile(string filepath)
+        {
+            return;
         }
 
         public Dictionary<string, string> GetSourceUrls()

@@ -3,7 +3,7 @@ using System.Text.Json;
 
 namespace WebApi.Services.JsonParserService
 {
-    public class JsonParserService : IParserService
+    public class JsonParserService : IJsonParserService
     {
         public T ParseFile<T>(string filepath) where T : class
         {
