@@ -1,15 +1,15 @@
-public class PiscineModel : IFacilityModel
+public class PiscineModel
 {
-    public required int Id { set; get; }
-    public required string Type { set; get; }
-    public required string Nom { set; get; }
-    public required string Arrondissement { set; get; }
-    public required string Adresse { set; get; }
-    public required string Propriete { set; get; }
-    public required string Gestion { set; get; }
-    public required string PointX { set; get; }
-    public required string PointY { set; get; }
-    public string? Equipement { set; get; }
-    public float Lon { set; get; }
-    public float Lat { set; get; }
+    public required int ID_UEV { set; get; }
+    public required string TYPE { set; get; }
+    public required string NOM { set; get; }
+    public required string ARRONDISSE { set; get; }
+    public required string ADRESSE { set; get; }
+    public required string PROPRIETE { set; get; }
+    public required string GESTION { set; get; }
+    public required string POINT_X { set; get; }
+    public required string POINT_Y { set; get; }
+    public string? EQUIPEME { set; get; }
+    public float LONG { set; get; }
+    public float LAT { set; get; }
 }

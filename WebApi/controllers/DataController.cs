@@ -10,15 +10,17 @@ namespace WebApi.Controllers.DataController {
     {
         private readonly IExternalApiService _externalApiService;
         private readonly IJsonParserService _jsonParserService;
+        private readonly ICsvParserService _csvParserService;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DataController"/> class.
         /// </summary>
         /// <param name="externalApiService">The ExternalApiService instance.</param>
         /// <param name="parserService">The JsonParserService instance.</param>
-        public DataController(IExternalApiService externalApiService, IJsonParserService jsonParserService) {
+        public DataController(IExternalApiService externalApiService, IJsonParserService jsonParserService, ICsvParserService csvParserService) {
             _externalApiService = externalApiService;
             _jsonParserService = jsonParserService;
+            _csvParserService = csvParserService;
         }
 
         /// <summary>
@@ -33,11 +35,19 @@ namespace WebApi.Controllers.DataController {
         }
 
         /// <summary>
-        /// Calls the appropriate parser instance to read the data at the specified filepath location.
+        /// Calls the CSV parser instance to read the data at the specified filepath location.
         /// </summary>
+        /// <typeparam name="T">The data type to parse into.</typeparam>
         /// <param name="filepath">The path to the file.</param>
-        public void ReadFile(string filepath)
+        /// <exception cref="InvalidOperationException">thrown if used on file format other than .csv</exception>
+        public void ReadCsvFile<T>(string filepath) where T : class
         {
+            string extension = Path.GetExtension(filepath);
+            if(!extension.Equals(".csv"))
+            {
+                throw new InvalidOperationException("DataController.ReadCsvFile - Error: can only call on .csv files.");
+            }
+            var data = _csvParserService.ParseFile<T>(filepath);
             return;
         }
 

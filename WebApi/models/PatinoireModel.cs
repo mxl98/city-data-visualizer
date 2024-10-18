@@ -1,5 +1,5 @@
 //ARRONDISSEMENT,PATINOIRE,DATE_TRS,OUVERT,DÉBLAYÉ,ARROSÉ,RESURFACÉ
-public class PatinoireModel : IFacilityModel
+public class PatinoireModel
 {
     public required int Id { set; get; }
     public required string Arrondissement { set; get; }

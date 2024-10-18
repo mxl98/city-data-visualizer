@@ -1,4 +1,4 @@
 public interface ICsvParserService
 {
-    public T ParseFile<T>(string filepath) where T : class;
+    public CsvResult<T> ParseFile<T>(string filepath) where T : class;
 }

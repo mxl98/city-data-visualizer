@@ -1,3 +1,6 @@
+using System.Globalization;
+using CsvHelper;
+
 namespace WebApi.Services.CsvParserService
 {
     /// <summary>
@@ -7,15 +10,32 @@ namespace WebApi.Services.CsvParserService
     {
 
         /// <summary>
-        /// Parses the data from the specified file into a list of the specified object type.
+        /// Parses the data from the specified CSV file into a list of the specified object type.
         /// </summary>
         /// <typeparam name="T">The specified type to parse the data into.</typeparam>
-        /// <param name="filepath">The path to the file</param>
+        /// <param name="filepath">The path to the CSV file</param>
         /// <returns>An object of the specified type containing the parsed data.</returns>
         /// <exception cref="NotImplementedException"></exception>
-        public T ParseFile<T>(string filepath) where T : class
+        public CsvResult<T> ParseFile<T>(string filepath) where T : class
         {
-            throw new NotImplementedException();
+            if (!File.Exists(filepath)) 
+            {
+                throw new FileNotFoundException("CsvParserService - CSV file not found.", filepath);
+            }
+            try
+            {
+                using (var reader = new StreamReader(filepath))
+                using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+                {
+                    var records = csv.GetRecords<T>();
+                    return new CsvResult<T>(new List<T>(records));
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                throw new InvalidOperationException("CsvParserService - Error parsing CSV file.", e);
+            }
         }
     }
 }

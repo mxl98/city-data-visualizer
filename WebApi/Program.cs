@@ -1,4 +1,5 @@
 using WebApi.Controllers.DataController;
+using WebApi.Services.CsvParserService;
 using WebApi.Services.ExternalApiService;
 using WebApi.Services.JsonParserService;
 
@@ -22,6 +23,7 @@ builder.Services.AddCors(options =>
 builder.Services.AddHttpClient<IExternalApiService, ExternalApiService>();
 builder.Services.AddScoped<DataController>();
 builder.Services.AddScoped<IJsonParserService, JsonParserService>();
+builder.Services.AddScoped<ICsvParserService, CsvParserService>();
 builder.Services.AddControllers();
 
 var app = builder.Build();
@@ -86,6 +88,27 @@ app.MapGet("/api/update_db", async () =>
     return "Database updated!";
 })
 .WithName("UpdateDB")
+.WithOpenApi();
+
+app.MapGet("/api/piscines_all", async () =>
+{
+    using (var scope = app.Services.CreateScope())
+    {
+        var services = scope.ServiceProvider;
+
+        try
+        {
+            var dataController = services.GetRequiredService<DataController>();
+            dataController.ReadCsvFile<PiscineModel>("db/piscines.csv");
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine($"Program - Error occured: { e.Message }");
+        }
+    }
+    return "Read piscines.csv!";
+})
+.WithName("GetAllPiscines")
 .WithOpenApi();
 
 app.Run();
