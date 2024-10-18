@@ -61,8 +61,6 @@ app.MapGet("/weatherforecast", () =>
 
 app.MapGet("/api/update_db", async () =>
 {
-    var data = String.Empty;
-
     using (var scope = app.Services.CreateScope())
     {
         var services = scope.ServiceProvider;
@@ -76,7 +74,7 @@ app.MapGet("/api/update_db", async () =>
             {
                 Console.WriteLine($"Title: { pair.Key }");
                 Console.WriteLine($"Url: { pair.Value }");
-                data = await dataController.FetchFromExternalApi(pair.Value);
+                var data = await dataController.FetchFromExternalApi(pair.Value);
                 dataController.WriteFile(data, pair);
             }
         }
@@ -90,23 +88,11 @@ app.MapGet("/api/update_db", async () =>
 .WithName("UpdateDB")
 .WithOpenApi();
 
-app.MapGet("/api/piscines_all", async () =>
+app.MapGet("/api/piscines_all", async (HttpContext context) =>
 {
-    using (var scope = app.Services.CreateScope())
-    {
-        var services = scope.ServiceProvider;
-
-        try
-        {
-            var dataController = services.GetRequiredService<DataController>();
-            dataController.ReadCsvFile<PiscineModel>("db/piscines.csv");
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine($"Program - Error occured: { e.Message }");
-        }
-    }
-    return "Read piscines.csv!";
+    var dataController = context.RequestServices.GetRequiredService<DataController>();
+    var piscinesData = dataController.ReadCsvFile<PiscineModel>("db/piscines.csv");
+    return piscinesData;
 })
 .WithName("GetAllPiscines")
 .WithOpenApi();

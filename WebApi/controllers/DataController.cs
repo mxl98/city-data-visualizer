@@ -40,7 +40,7 @@ namespace WebApi.Controllers.DataController {
         /// <typeparam name="T">The data type to parse into.</typeparam>
         /// <param name="filepath">The path to the file.</param>
         /// <exception cref="InvalidOperationException">thrown if used on file format other than .csv</exception>
-        public void ReadCsvFile<T>(string filepath) where T : class
+        public CsvResult<T> ReadCsvFile<T>(string filepath) where T : class
         {
             string extension = Path.GetExtension(filepath);
             if(!extension.Equals(".csv"))
@@ -48,7 +48,7 @@ namespace WebApi.Controllers.DataController {
                 throw new InvalidOperationException("DataController.ReadCsvFile - Error: can only call on .csv files.");
             }
             var data = _csvParserService.ParseFile<T>(filepath);
-            return;
+            return data;
         }
 
         /// <summary>
