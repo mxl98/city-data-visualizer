@@ -1,0 +1,39 @@
+name: cdv-app
+services:
+  frontend:
+    image: cdv-ui
+    container_name: cdv-ui
+    build:
+      context: ./UI
+    ports:
+      - 4200:4200
+    networks:
+      - cdv-network
+    depends_on:
+      - backend
+  backend:
+    image: cdv-api
+    container_name: cdv-api
+    build:
+      context: ./WebApi
+    ports:
+      - 8080:8080
+    networks:
+      - cdv-network
+    depends_on:
+      db:
+        condition: service_healthy
+  db:
+    image: mysql:8.0
+    container_name: db
+    networks:
+      - cdv-network
+    ports:
+      - 3307:3306
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      retries: 5
+networks:
+  cdv-network:
+    external: true

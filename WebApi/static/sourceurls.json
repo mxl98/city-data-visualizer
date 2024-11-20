@@ -1,0 +1,6 @@
+{
+    "SourceUrls": {
+        "piscines": "https://data.montreal.ca/dataset/4604afb7-a7c4-4626-a3ca-e136158133f2/resource/cbdca706-569e-4b4a-805d-9af73af03b14/download/piscines.csv",
+        "terrain": "https://donnees.montreal.ca/dataset/installations-recreatives-sportives-et-culturelles/resource/1c239e86-8b36-476c-bd51-91a3cd20f687/download/terrain_sport_ext.csv"
+    }
+}

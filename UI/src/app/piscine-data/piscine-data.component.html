@@ -1,0 +1,37 @@
+<section class="listing-item">
+    <div class="no-overflow">
+        <div class="listing-item-nav button-line">
+            <label class="button" (click)="onClickSummary(piscine.iD_UEV)">
+                <input type="radio" name="piscine-data-{{ piscine.iD_UEV }}" checked>Sommaire
+                <span class="checkmark"></span>
+            </label>
+            <label class="button" (click)="onClickDetails(piscine.iD_UEV)">
+                <input type="radio" name="piscine-data-{{ piscine.iD_UEV }}">À propos
+                <span class="checkmark"></span>
+            </label>
+        </div>
+        <div id="data-summary-{{ piscine.iD_UEV }}" class="summary">
+            <h2 class="h2-primary">{{ piscine.nom }}</h2>
+            <h3 class="h3-primary">{{ piscine.type }}</h3>
+            <ul>
+                <li class="text-primary">📍 {{ piscine.adresse }}, {{ piscine.arrondisse }}</li>
+                <li class="text-primary">🔍 {{ piscine.equipeme }}</li>
+            </ul>
+        </div>
+        <div id="data-details-{{ piscine.iD_UEV }}" class="details hide">
+            <ul>
+                <li class="text-primary">Id : {{ piscine.iD_UEV }};</li>
+                <li class="text-primary">Nom : {{ piscine.nom }};</li>
+                <li class="text-primary">type : {{ piscine.type }};</li>
+                <li class="text-primary">Adresse : {{ piscine.adresse }};</li>
+                <li class="text-primary">Arrondissement : {{ piscine.arrondisse }};</li>
+                <li class="text-primary">Propriété : {{ piscine.propriete }};</li>
+                <li class="text-primary">Gestion : {{ piscine.gestion }};</li>
+                <li class="text-primary">Point X : {{ piscine.poinT_X }};</li>
+                <li class="text-primary">Point Y : {{ piscine.poinT_Y }};</li>
+                <li class="text-primary">Latitude : {{ piscine.lat }}; </li>
+                <li class="text-primary">Longitude : {{ piscine.long }};</li>
+            </ul>
+        </div>
+    </div>
+</section>

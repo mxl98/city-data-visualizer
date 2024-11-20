@@ -1,0 +1,134 @@
+/* You can add global styles to this file, and also import other style files */
+$text-primary-color: #ddd;
+$text-primary-font-family: sans-serif;
+
+html {
+    background-color: #212124;
+}
+
+ul {
+    list-style: none;
+    text-indent: -1em;
+}
+
+li, p {
+    color: $text-primary-color;
+    font-size: 16px;
+    line-height: 2em;
+    font-family: $text-primary-font-family;
+}
+
+.text {
+    &-primary {
+        color: $text-primary-color;
+        font-size: 16px;
+        font-family: $text-primary-font-family;
+    }
+
+    &-secondary {
+        color: gray;
+        font-size: 16px;
+        font-family: $text-primary-font-family;
+    }
+}
+
+.button-line {
+    display: flex;
+    justify-content: space-around;
+}
+
+.h {
+    &2-primary {
+        color: $text-primary-color;
+        font-weight: bold;
+        font-size: 24px;
+        font-family: $text-primary-font-family;
+    }
+
+    &3-primary {
+        color: $text-primary-color;
+        font-weight: bold;
+        font-size: 16px;
+        font-family: $text-primary-font-family;
+    }
+}
+
+.button {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+
+    height: 3em;
+    width: 100%;
+
+    font-size: 16px;
+    color: $text-primary-color;
+    font-weight: bold;
+    font-family: $text-primary-font-family;
+
+    user-select: none;
+
+    & input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+
+        &:checked ~ .checkmark { 
+            background-color: $text-primary-color;
+
+            &:after {
+                display: block;
+                left: 0;
+                right: 0;
+                margin: auto;
+            }
+        }
+    }
+
+    &:hover {
+        z-index: 1;
+        color: rgb(177, 177, 177);
+
+        & input ~ .checkmark:after {
+            background-color: rgb(177, 177, 177);
+        }
+    }
+
+    & .checkmark:after {
+        height: 5px;
+        width: 5em;
+        background-color: $text-primary-color;
+    }
+}
+
+.checkmark {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin: auto;
+
+    &:after {
+        content: "";
+        position: absolute;
+        display: none;
+    }
+}
+
+
+
+.left {
+    text-align: left;
+}
+
+.right {
+    text-align: right;
+}
+
+.hide {
+    display: none;
+}
