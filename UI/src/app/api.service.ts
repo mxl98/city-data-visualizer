@@ -6,7 +6,7 @@ import { Piscine } from './piscine';
   providedIn: 'root'
 })
 export class ApiService {
-  private piscineUrl = "http://localhost:8080/api/piscines_all";
+  private piscineUrl = "http://localhost:8080/api/piscines";
 
   private piscineList: Piscine[] = [
     {

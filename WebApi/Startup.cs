@@ -78,43 +78,5 @@ public class Startup
         }
         app.UseRouting();
         app.MapControllers();
-
-        app.MapGet("/api/update_db", async (AppDbContext dbContext) =>
-        {
-            using (var scope = app.Services.CreateScope())
-            {
-                var services = scope.ServiceProvider;
-
-                try
-                {
-                    var dataController = services.GetRequiredService<DataController>();
-                    await dataController.UpdateAllAsync();
-                }
-                catch (Exception e)
-                {
-                    return Results.Problem($"Program - Error occured: {e.Message}");
-                }
-            }
-            return Results.Ok("Database updated!");
-        })
-        .WithName("UpdateDB")
-        .WithOpenApi();
-
-        app.MapGet("/api/piscines_all", async (HttpContext context) =>
-        {
-            try 
-            {
-                var dataController = context.RequestServices.GetRequiredService<DataController>();
-                var data = await dataController.GetAllPiscinesAsync();
-                return Results.Json(data);
-            } 
-            catch (Exception e)
-            {
-                Console.Error.WriteLine($"Program - Error occured: {e.Message}");
-                return Results.Problem("An error occured while processing your request.");
-            }
-        })
-        .WithName("GetAllPiscines")
-        .WithOpenApi();
     }
 }
