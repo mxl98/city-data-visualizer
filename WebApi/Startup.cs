@@ -78,5 +78,25 @@ public class Startup
         }
         app.UseRouting();
         app.MapControllers();
+
+        Initialize(app);
+    }
+
+    private async void Initialize(WebApplication app)
+    {
+        using (var scope = app.Services.CreateScope())
+        {
+            var services = scope.ServiceProvider;
+
+            try 
+            {
+                var dataController = services.GetRequiredService<DataController>();
+                await dataController.UpdateAllAsync();
+            }
+            catch (Exception e)
+            {
+                Console.Error.WriteLine($"Initialize - Error occured: { e.Message }");
+            }
+        }
     }
 }
