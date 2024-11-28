@@ -58,13 +58,25 @@ namespace WebApi.Controllers.DataController {
         }
 
         /// <summary>
-        /// Updates the content of the database based on the provided list of PiscineModel.
+        /// Updates the content of the database based on the provided list 
+        /// of PiscineModel.
         /// </summary>
         /// <param name="piscines">The updated list of PiscineModel.</param>
         /// <returns>Nothing is returned.</returns>
         public async Task UpdatePiscinesAsync(List<PiscineModel> piscines)
         {
             await _piscineService.AddCollectionAsync(piscines);
+        }
+
+        /// <summary>
+        /// Gets all piscines in the specified arrondissement from the 
+        /// corresponding service method.
+        /// </summary>
+        /// <param name="arrondissement">To get all the piscines in this arrondissement.</param>
+        /// <returns>A list of Piscine entities of the specified arrondissement.</returns>
+        public async Task<List<PiscineModel>> GetPiscinesByArrondissementAsync(string arrondissement)
+        {
+            return await _piscineService.GetByArrondissement(arrondissement);
         }
 
         /// <summary>

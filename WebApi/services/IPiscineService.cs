@@ -17,6 +17,13 @@ public interface IPiscineService
     Task<PiscineModel> GetByIdAsync(int id);
 
     /// <summary>
+    /// Gets a list of PiscineModel by their arrondissement from the database.
+    /// </summary>
+    /// <param name="arrondissement">The arrondissement of the PiscineModels</param>
+    /// <returns>The list of PiscineModels of the specified arrondissement.</returns>
+    Task<List<PiscineModel>> GetByArrondissement(string arrondissement);
+
+    /// <summary>
     /// Adds the specified PiscineModel to the database.
     /// If the entity exists, update it.
     /// </summary>

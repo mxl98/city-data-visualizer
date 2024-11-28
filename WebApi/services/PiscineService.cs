@@ -50,6 +50,16 @@ public class PiscineService : IPiscineService
         return await _context.PiscineModels.FindAsync(id);
     }
 
+    /// <inheritdoc cref="IPiscineService.GetByArrondissement(string)">
+    public async Task<List<PiscineModel>> GetByArrondissement(string arrondissement)
+    {
+        var data = await _context
+            .PiscineModels
+            .Where(p => p.ARRONDISSE.Equals(arrondissement))
+            .ToListAsync();
+        return data;
+    }
+
     /// <inheritdoc cref="IPiscineService.UpdateAsync(PiscineModel)">
     public async Task UpdateAsync(PiscineModel entity)
     {

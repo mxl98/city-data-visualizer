@@ -21,10 +21,11 @@ public class ApiController : ControllerBase
         {
             if (arrondissement.IsNullOrWhiteSpace())
             {
-                var data = await _dataController.GetAllPiscinesAsync();
-                return Ok(data);
+                var allPiscines = await _dataController.GetAllPiscinesAsync();
+                return Ok(allPiscines);
             }
-            return Ok(arrondissement);
+            var selectPiscine = await _dataController.GetPiscinesByArrondissementAsync(arrondissement);
+            return Ok(selectPiscine);
         }
         catch (Exception e)
         {
