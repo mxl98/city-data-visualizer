@@ -1,12 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Piscine } from './piscine';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
   private piscineUrl = "http://localhost:8080/api/piscines";
+  private arrondissementsUrl = "http://localhost:8080/api/arrondissements";
 
   private piscineList: Piscine[] = [
     {
@@ -48,5 +50,9 @@ export class ApiService {
   async getAllPiscine(): Promise<Piscine[]> {
     const data = await fetch(this.piscineUrl);
     return (await data.json()) ?? [];
+  }
+
+  getAllArrondissements(): Observable<string[]> {
+    return this.http.get<string[]>(this.arrondissementsUrl);
   }
 }

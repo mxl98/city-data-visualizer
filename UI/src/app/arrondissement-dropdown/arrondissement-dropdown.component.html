@@ -1,1 +1,5 @@
-<p>arrondissement-dropdown works!</p>
+<select>
+    <option *ngFor="let arrondissement of dropdownOptions" [value]="arrondissement">
+        {{ arrondissement }}
+    </option>
+</select>
