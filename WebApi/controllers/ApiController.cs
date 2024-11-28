@@ -29,23 +29,22 @@ public class ApiController : ControllerBase
     }
 
     [HttpGet("piscines")]
-    public async Task<IActionResult> GetWithParameter([FromQuery] string? arrondissement)
+    public async Task<IActionResult> GetWithParameter([FromQuery] List<string>? arrondissements)
     {
         try
         {
-            if (arrondissement.IsNullOrWhiteSpace())
+            if (arrondissements.Count() == 0)
             {
                 var allPiscines = await _dataController.GetAllPiscinesAsync();
                 return Ok(allPiscines);
             }
-            var selectPiscine = await _dataController.GetPiscinesByArrondissementAsync(arrondissement);
+            var selectPiscine = await _dataController.GetPiscinesByArrondissementAsync(arrondissements);
             return Ok(selectPiscine);
         }
         catch (Exception e)
         {
             return Problem($"Api - Error occured: { e.Message }");
         }
-        
     }
 
     [HttpGet("update_database")]

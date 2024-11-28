@@ -79,6 +79,17 @@ namespace WebApi.Controllers.DataController {
             return await _piscineService.GetByArrondissement(arrondissement);
         }
 
+        /// <summary>
+        /// Gets all piscines in the specified arrondissements from the 
+        /// corresponding service method.
+        /// </summary>
+        /// <param name="arrondissement">To get all the piscines in these arrondissements.</param>
+        /// <returns>A list of Piscine entities of the specified arrondissements.</returns>
+        public async Task<List<PiscineModel>> GetPiscinesByArrondissementAsync(List<string> arrondissements)
+        {
+            return await _piscineService.GetByArrondissement(arrondissements);
+        }
+
         public async Task<List<string>> GetAllArrondissementsAsync()
         {
             return await _piscineService.GetAllArrondissementsAsync();

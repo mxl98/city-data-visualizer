@@ -30,6 +30,13 @@ public interface IPiscineService
     Task<List<PiscineModel>> GetByArrondissement(string arrondissement);
 
     /// <summary>
+    /// Gets a list of PiscineModel by their arrondissement from the database.
+    /// </summary>
+    /// <param name="arrondissements">The list of arrondissements of the PiscineModels</param>
+    /// <returns>The list of PiscineModels of the specified arrondissements.</returns>
+    Task<List<PiscineModel>>GetByArrondissement(List<string> arrondissements);
+
+    /// <summary>
     /// Adds the specified PiscineModel to the database.
     /// If the entity exists, update it.
     /// </summary>

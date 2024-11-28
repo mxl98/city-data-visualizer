@@ -82,4 +82,14 @@ public class PiscineService : IPiscineService
 
         await _context.SaveChangesAsync();
     }
+
+    /// <inheritdoc cref="IPiscineService.GetByArrondissement(List{string})">
+    public Task<List<PiscineModel>> GetByArrondissement(List<string> arrondissements)
+    {
+        var piscines = _context
+            .PiscineModels
+            .Where(p => arrondissements.Contains(p.ARRONDISSE))
+            .ToListAsync();
+        return piscines;
+    }
 }
