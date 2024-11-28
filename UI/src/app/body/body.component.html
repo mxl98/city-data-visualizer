@@ -1,6 +1,9 @@
 <body>
-    <app-piscine-data 
-        *ngFor="let piscine of piscineList"
-        [piscine]="piscine">
-    </app-piscine-data>
+    <app-arrondissement-dropdown></app-arrondissement-dropdown>
+    <div class="content">
+        <app-piscine-data 
+            *ngFor="let piscine of piscineList"
+            [piscine]="piscine">
+        </app-piscine-data>
+    </div>
 </body>

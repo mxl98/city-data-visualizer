@@ -3,11 +3,16 @@ import { ApiService } from '../api.service';
 import { PiscineDataComponent } from '../piscine-data/piscine-data.component';
 import { Piscine } from '../piscine';
 import { CommonModule } from '@angular/common';
+import { ArrondissementDropdownComponent } from '../arrondissement-dropdown/arrondissement-dropdown.component';
 
 @Component({
   selector: 'app-body',
   standalone: true,
-  imports: [CommonModule, PiscineDataComponent],
+  imports: [
+    CommonModule, 
+    ArrondissementDropdownComponent,
+    PiscineDataComponent
+  ],
   templateUrl: './body.component.html',
   styleUrl: './body.component.scss'
 })
