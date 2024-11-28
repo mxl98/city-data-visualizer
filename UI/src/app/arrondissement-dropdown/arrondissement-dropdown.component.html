@@ -1,5 +1,15 @@
-<select>
-    <option *ngFor="let arrondissement of dropdownOptions" [value]="arrondissement">
-        {{ arrondissement }}
-    </option>
-</select>
+<form>
+    <select class="hide">
+        <option *ngFor="let arrondissement of dropdownOptions" [value]="arrondissement">
+            {{ arrondissement }}
+        </option>
+    </select>
+    <button type="button" (click)="onClickArrondissements()">Arrondissements</button>    
+    <button type="submit">Appliquer</button>
+    <div id="arrondissements-dropdown" class="checkbox-dropdown hide">
+        <div *ngFor="let arrondissement of dropdownOptions" class="dropdown-option">
+            <input type="checkbox" id="checkbox-{{ arrondissement }}">
+            <label for="checkbox-{{ arrondissement }}">{{ arrondissement }}</label>
+        </div>
+    </div>
+</form>
