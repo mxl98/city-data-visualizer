@@ -14,6 +14,20 @@ public class ApiController : ControllerBase
         _dataController = dataController;
     }
 
+    [HttpGet("arrondissements")]
+    public async Task<IActionResult> GetAllArrondissements()
+    {
+        try 
+        {
+            var arrondissements = await _dataController.GetAllArrondissementsAsync();
+            return Ok(arrondissements);
+        }
+        catch (Exception e)
+        {
+            return Problem($"Api - Error occured: { e.Message }");
+        }
+    }
+
     [HttpGet("piscines")]
     public async Task<IActionResult> GetWithParameter([FromQuery] string? arrondissement)
     {

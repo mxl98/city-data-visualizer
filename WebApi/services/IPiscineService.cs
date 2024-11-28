@@ -10,6 +10,12 @@ public interface IPiscineService
     Task<List<PiscineModel>> GetAllPiscinesAsync();
 
     /// <summary>
+    /// Gets all known arrondissements from the database.
+    /// </summary>
+    /// <returns>The list of arrondissement names.</returns>
+    Task<List<string>> GetAllArrondissementsAsync();
+
+    /// <summary>
     /// Gets a specific PiscineModel by its id from the database.
     /// </summary>
     /// <param name="id">The id of the PiscineModel.</param>

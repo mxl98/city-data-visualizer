@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Quartz.Util;
 
 public class PiscineService : IPiscineService
 {
@@ -53,11 +54,23 @@ public class PiscineService : IPiscineService
     /// <inheritdoc cref="IPiscineService.GetByArrondissement(string)">
     public async Task<List<PiscineModel>> GetByArrondissement(string arrondissement)
     {
-        var data = await _context
+        var piscines = await _context
             .PiscineModels
             .Where(p => p.ARRONDISSE.Equals(arrondissement))
             .ToListAsync();
-        return data;
+        return piscines;
+    }
+
+    /// <inheritdoc cref="IPiscineService.GetAllArrondissementsAsync()">
+    public async Task<List<string>> GetAllArrondissementsAsync()
+    {
+        var arrondissements = await _context
+            .PiscineModels
+            .Select(p => p.ARRONDISSE)
+            .Where(a => a != null || a != "")
+            .Distinct()
+            .ToListAsync();
+        return arrondissements;
     }
 
     /// <inheritdoc cref="IPiscineService.UpdateAsync(PiscineModel)">

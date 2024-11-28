@@ -79,6 +79,11 @@ namespace WebApi.Controllers.DataController {
             return await _piscineService.GetByArrondissement(arrondissement);
         }
 
+        public async Task<List<string>> GetAllArrondissementsAsync()
+        {
+            return await _piscineService.GetAllArrondissementsAsync();
+        }
+
         /// <summary>
         /// Gets all piscines from the corresponding service method.
         /// </summary>
