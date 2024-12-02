@@ -24,12 +24,11 @@ export class BodyComponent {
   apiService: ApiService = inject(ApiService);
 
   constructor() {
-    this.piscineList = this.apiService.getAllPiscinesTest();
-    this.allPiscinesList = this.piscineList;
-    // this.apiService.getAllPiscine().then((piscineList: Piscine[]) => 
-    //   {
-    //     this.piscineList = piscineList;
-    //   });
+     this.apiService.getAllPiscine().then((piscineList: Piscine[]) => 
+       {
+         this.piscineList = piscineList;
+         this.allPiscinesList = piscineList;
+       });
   }
 
   onFiltersApplied(filters: string[]): void {

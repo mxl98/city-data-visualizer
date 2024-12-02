@@ -31,6 +31,8 @@ export class ArrondissementDropdownComponent implements OnInit {
       this.dropdownOptions = ["arr1", "arr2", "arr3", "arr4", "arr5"];
     }
     this.createForm();
+    console.log(this.filterForm.value);
+    console.log(this.dropdownOptions);
   }
 
   createForm(): void {
@@ -57,6 +59,7 @@ export class ArrondissementDropdownComponent implements OnInit {
 
   onClickArrondissements(): void {
     this.isActive = !this.isActive;
+    console.log(this.isActive);
     this.filterService.handleArrondissements(this.isActive);
   }
 
