@@ -15,7 +15,7 @@ export class ApiService {
       iD_UEV: 0,
       type: 'Piscine intérieure',
       nom: 'Complexe Sportif ABC',
-      arrondisse: 'Ahuntsic-Cartierville',
+      arrondisse: 'arr1',
       adresse: '1 000, Avenue Émile-Journeault Est',
       propriete: 'Municipale',
       gestion: 'Municipale',
@@ -29,7 +29,7 @@ export class ApiService {
       iD_UEV: 1,
       type: 'Pataugeoire',
       nom: 'Parc Saint-Jean-Baptiste',
-      arrondisse: 'Rivière-des-Prairies–Pointe-aux-Trembles',
+      arrondisse: 'arr2',
       adresse: '1 048, Boulevard Saint-Jean-Baptiste',
       propriete: 'Municipale',
       gestion: 'Municipale',
@@ -54,5 +54,9 @@ export class ApiService {
 
   getAllArrondissements(): Observable<string[]> {
     return this.http.get<string[]>(this.arrondissementsUrl);
+  }
+
+  getAllPiscineByArrondissementTest(arrondissements: string[]) {
+    console.log(arrondissements);
   }
 }

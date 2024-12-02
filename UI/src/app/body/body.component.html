@@ -1,5 +1,5 @@
 <body>
-    <app-arrondissement-dropdown></app-arrondissement-dropdown>
+    <app-arrondissement-dropdown (filtersApplied)="onFiltersApplied($event)"></app-arrondissement-dropdown>
     <div class="content">
         <app-piscine-data 
             *ngFor="let piscine of piscineList"

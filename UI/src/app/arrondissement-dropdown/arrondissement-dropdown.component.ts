@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
 import { ApiService } from '../api.service';
 import { CommonModule } from '@angular/common';
 import { FilterService } from '../filter.service';
@@ -16,6 +16,7 @@ import { FormGroup, FormControl, ReactiveFormsModule, FormBuilder } from '@angul
 })
 
 export class ArrondissementDropdownComponent implements OnInit {
+  @Output() filtersApplied = new EventEmitter<string[]>();
   dropdownOptions: string[] = [];
   isActive: boolean = false;
   apiService: ApiService = inject(ApiService);
@@ -62,6 +63,6 @@ export class ArrondissementDropdownComponent implements OnInit {
   onSubmit(): void {
     const selectedFilters = Object.keys(this.filterForm.value).filter(
       (key) => this.filterForm.value[key] === true);
-    this.filterService.applyFilter(selectedFilters);
+    this.filtersApplied.emit(selectedFilters);
   }
 }

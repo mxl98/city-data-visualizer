@@ -19,12 +19,30 @@ import { ArrondissementDropdownComponent } from '../arrondissement-dropdown/arro
 
 export class BodyComponent {
   piscineList: Piscine[] = [];
+  allPiscinesList: Piscine[] = [];
+  selectedFilters: string[] = [];
   apiService: ApiService = inject(ApiService);
 
   constructor() {
-    this.apiService.getAllPiscine().then((piscineList: Piscine[]) => 
-      {
-        this.piscineList = piscineList;
-      });
+    this.piscineList = this.apiService.getAllPiscinesTest();
+    this.allPiscinesList = this.piscineList;
+    // this.apiService.getAllPiscine().then((piscineList: Piscine[]) => 
+    //   {
+    //     this.piscineList = piscineList;
+    //   });
+  }
+
+  onFiltersApplied(filters: string[]): void {
+    this.updateList(filters);
+  }
+
+  updateList(filters: string[]): void {
+    if (filters.length != 0) {
+      this.piscineList = this.allPiscinesList.filter((piscine) =>
+        filters.includes(piscine.arrondisse)
+      );
+    } else {
+      this.piscineList = this.allPiscinesList;
+    }
   }
 }
