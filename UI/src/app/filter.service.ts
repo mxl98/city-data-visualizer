@@ -11,4 +11,8 @@ export class FilterService {
       document.getElementById("arrondissements-dropdown")?.classList.add("hide");
     }
   }
+
+  applyFilter(filters: string[]) {
+    console.log(filters);
+  }
 }

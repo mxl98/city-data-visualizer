@@ -1,4 +1,4 @@
-<form>
+<form [formGroup]="filterForm" (ngSubmit)="onSubmit()">
     <select class="hide">
         <option *ngFor="let arrondissement of dropdownOptions" [value]="arrondissement">
             {{ arrondissement }}
@@ -8,7 +8,7 @@
     <button type="submit">Appliquer</button>
     <div id="arrondissements-dropdown" class="checkbox-dropdown hide">
         <div *ngFor="let arrondissement of dropdownOptions" class="dropdown-option">
-            <input type="checkbox" id="checkbox-{{ arrondissement }}">
+            <input type="checkbox" id="checkbox-{{ arrondissement }}" [formControlName]="arrondissement">
             <label for="checkbox-{{ arrondissement }}">{{ arrondissement }}</label>
         </div>
     </div>
