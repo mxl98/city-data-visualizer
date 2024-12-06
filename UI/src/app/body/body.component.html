@@ -1,9 +1,7 @@
-<body>
-    <app-arrondissement-dropdown (filtersApplied)="onFiltersApplied($event)"></app-arrondissement-dropdown>
-    <div class="content">
-        <app-piscine-data 
-            *ngFor="let piscine of piscineList"
-            [piscine]="piscine">
-        </app-piscine-data>
-    </div>
-</body>
+<app-arrondissement-dropdown (filtersApplied)="onFiltersApplied($event)"></app-arrondissement-dropdown>
+<div class="content">
+    <app-piscine-data 
+        *ngFor="let piscine of piscineList"
+        [piscine]="piscine">
+    </app-piscine-data>
+</div>
