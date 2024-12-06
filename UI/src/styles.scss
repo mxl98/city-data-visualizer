@@ -53,6 +53,60 @@ li, p, label {
     }
 }
 
+.nav-button {
+    display: inline;
+    cursor: pointer;
+    
+    height: 2.5em;
+    width: auto;
+    padding: 0 20px 0 20px;
+    border-radius: 20px;
+    border: none;
+
+    font-size: 16px;
+    color: blue;
+    background: #eee;
+    font-weight: bold;
+    font-family: $text-primary-font-family;
+
+    user-select: none;
+
+    &:hover {
+        background: #ccc;
+    }
+
+    &[aria-expanded="true"] {
+
+    }
+}
+
+.submit-button {
+    display: inline;
+    cursor: pointer;
+    
+    height: 2.5em;
+    width: auto;
+    padding: 0 20px 0 20px;
+    border-radius: 20px;
+    border: none;
+
+    font-size: 16px;
+    color: #eee;
+    background: blue;
+    font-weight: bold;
+    font-family: $text-primary-font-family;
+
+    user-select: none;
+
+    &:hover {
+        background: rgb(0, 0, 190);
+    }
+
+    &[aria-expanded="true"] {
+        
+    }
+}
+
 .button {
     display: grid;
     justify-content: center;
@@ -91,10 +145,10 @@ li, p, label {
 
     &:hover {
         z-index: 1;
-        color: rgb(177, 177, 177);
+        color: #aaa;
 
         & input ~ .radiomark:after {
-            background-color: rgb(177, 177, 177);
+            background-color: #aaa;
         }
     }
 

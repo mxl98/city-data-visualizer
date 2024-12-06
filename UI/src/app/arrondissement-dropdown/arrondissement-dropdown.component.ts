@@ -70,9 +70,10 @@ export class ArrondissementDropdownComponent implements OnInit {
     ];
   }
 
-  onClickArrondissements(): void {
+  toggleDropdown(): void {
     this.isActive = !this.isActive;
     this.filterService.handleArrondissements(this.isActive);
+    document.getElementById("dropdown-button")?.setAttribute("aria-expanded", this.isActive + "");
   }
 
   onSubmit(): void {

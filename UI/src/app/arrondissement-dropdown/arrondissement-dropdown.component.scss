@@ -1,14 +1,18 @@
 .checkbox-dropdown {
     display: grid;
-    background-color: black;
-    border-radius: 2em;
-    padding: 1em 2em 1em 2em;
     grid-template-columns: auto auto;
     column-gap: 1em;
     justify-content: start;
     justify-items: start;
-    width: fit-content;
+    margin-bottom: 1rem;
+}
+
+.checkbox-dropdown-container {
+    background-color: black;
+    border-radius: 2em;
+    padding: 1em 2em 1em 2em;
     margin: 1em 0 3em 0;
+    width: fit-content;
 }
 
 .hide {

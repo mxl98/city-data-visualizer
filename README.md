@@ -25,10 +25,10 @@ Data model names are in french as to match with the language of the data itself.
 Current features:
 * Automated database updates
 * Lists all pools (piscines)
+* Filter
 
 Planned (upcoming) features:
-* Filters
-* Search
+* Accessibility settings
 
 ## Stack
 
