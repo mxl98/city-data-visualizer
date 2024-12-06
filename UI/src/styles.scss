@@ -18,6 +18,10 @@ li, p, label {
     font-family: $text-primary-font-family;
 }
 
+.filters {
+    display: grid;
+}
+
 .text {
     &-primary {
         color: $text-primary-color;
@@ -61,7 +65,7 @@ li, p, label {
     width: auto;
     padding: 0 20px 0 20px;
     border-radius: 20px;
-    border: none;
+    border: solid #eee;
 
     font-size: 16px;
     color: blue;
@@ -73,10 +77,11 @@ li, p, label {
 
     &:hover {
         background: #ccc;
+        border: solid #ccc;
     }
 
     &[aria-expanded="true"] {
-
+        border: solid blue;
     }
 }
 
