@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, isDevMode } from '@angular/core';
 import { ApiService } from '../api.service';
 import { PiscineDataComponent } from '../piscine-data/piscine-data.component';
 import { Piscine } from '../piscine';
@@ -29,6 +29,10 @@ export class BodyComponent {
          this.piscineList = piscineList;
          this.allPiscinesList = piscineList;
        });
+      if (isDevMode()) {
+        this.piscineList = this.apiService.getAllPiscinesTest();
+        this.allPiscinesList = this.piscineList;
+      }
   }
 
   onFiltersApplied(filters: string[]): void {

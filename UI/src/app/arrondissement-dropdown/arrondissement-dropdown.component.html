@@ -3,8 +3,11 @@
     <button type="submit">Appliquer</button>
     <div id="arrondissements-dropdown" class="checkbox-dropdown hide">
         <div *ngFor="let arrondissement of dropdownOptions" class="dropdown-option">
-            <input type="checkbox" id="checkbox-{{ arrondissement }}" [formControlName]="arrondissement">
-            <label for="checkbox-{{ arrondissement }}">{{ arrondissement }}</label>
+            <label class="checkbox-container" for="checkbox-{{ arrondissement }}">
+                <span class="h3-primary checkbox-label">{{ arrondissement }}</span>
+                <input type="checkbox" id="checkbox-{{ arrondissement }}" [formControlName]="arrondissement">
+                <span class="checkmark"></span>
+            </label>
         </div>
     </div>
 </form>

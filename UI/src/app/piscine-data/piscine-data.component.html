@@ -3,11 +3,11 @@
         <div class="listing-item-nav button-line">
             <label class="button" (click)="onClickSummary(piscine.iD_UEV)">
                 <input type="radio" name="piscine-data-{{ piscine.iD_UEV }}" checked>Sommaire
-                <span class="checkmark"></span>
+                <span class="radiomark"></span>
             </label>
             <label class="button" (click)="onClickDetails(piscine.iD_UEV)">
                 <input type="radio" name="piscine-data-{{ piscine.iD_UEV }}">À propos
-                <span class="checkmark"></span>
+                <span class="radiomark"></span>
             </label>
         </div>
         <div id="data-summary-{{ piscine.iD_UEV }}" class="summary">

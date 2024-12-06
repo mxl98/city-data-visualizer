@@ -1,4 +1,4 @@
-import { Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, inject, isDevMode, OnInit, Output } from '@angular/core';
 import { ApiService } from '../api.service';
 import { CommonModule } from '@angular/common';
 import { FilterService } from '../filter.service';
@@ -29,8 +29,8 @@ export class ArrondissementDropdownComponent implements OnInit {
   ngOnInit(): void {
     this.loadDropdownOptions();
     console.log(this.dropdownOptions);
-    if (this.dropdownOptions.length == 0) {
-      this.dropdownOptions = ["arr1", "arr2", "arr3", "arr4", "arr5"];
+    if (this.dropdownOptions.length == 0 || isDevMode()) {
+      this.dropdownOptions = ["arr1", "arr2", "arrondissement3", "un très long nom d-arrondissement-4", "arr5-makes-a-very-wide-column"];
     }
     this.createForm();
     console.log(this.filterForm.value);
