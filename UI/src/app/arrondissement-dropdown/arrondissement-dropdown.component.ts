@@ -28,12 +28,7 @@ export class ArrondissementDropdownComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadDropdownOptions();
-    console.log(this.dropdownOptions);
-    if (this.dropdownOptions.length == 0 || isDevMode()) {
-      this.dropdownOptions = ["arr1", "arr2", "arrondissement3", "un très long nom d-arrondissement-4", "arr5-makes-a-very-wide-column"];
-    }
     this.createForm();
-    console.log(this.filterForm.value);
   }
 
   createForm(): void {

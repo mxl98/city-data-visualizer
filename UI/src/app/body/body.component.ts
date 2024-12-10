@@ -29,10 +29,6 @@ export class BodyComponent {
          this.piscineList = piscineList;
          this.allPiscinesList = piscineList;
        });
-      if (isDevMode()) {
-        this.piscineList = this.apiService.getAllPiscinesTest();
-        this.allPiscinesList = this.piscineList;
-      }
   }
 
   onFiltersApplied(filters: string[]): void {

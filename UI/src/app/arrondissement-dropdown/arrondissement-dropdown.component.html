@@ -3,7 +3,7 @@
         <button type="button" id="dropdown-button" class="nav-button" (click)="toggleDropdown();" aria-expanded="false">Arrondissements</button>
         <div id="arrondissements-dropdown" class="checkbox-dropdown-container hide">
             <div class="checkbox-dropdown">
-                <div *ngFor="let arrondissement of dropdownOptions">
+                <div *ngFor="let arrondissement of dropdownOptions" id="option-wrapper-{{ arrondissement }}">
                     <label class="checkbox-container" for="checkbox-{{ arrondissement }}">
                         <span class="h3-primary checkbox-label">{{ arrondissement }}</span>
                         <input type="checkbox" id="checkbox-{{ arrondissement }}" [formControlName]="arrondissement">
