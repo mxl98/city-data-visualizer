@@ -61,13 +61,25 @@ li, p, label {
     }
 }
 
+.dropdown-arrow {
+    display: block;
+    position: relative;
+    margin-left: 15px;
+    width: 10px;
+    height: 10px;
+    border-bottom: solid 3px blue;
+    border-right: solid 3px blue;
+    transform: rotate(-45deg);
+}
+
 .nav-button {
-    display: inline;
+    display: inline-flex;
+    align-items: center;
     cursor: pointer;
     
     height: 2.5em;
     width: auto;
-    padding: 0 20px 0 20px;
+    padding: 0 15px 0 15px;
     border-radius: 10px;
     border: solid #eee;
 
@@ -91,6 +103,11 @@ li, p, label {
         &:hover {
             background: #ccc;
         }
+
+        & > .dropdown-arrow {
+            transform: rotate(45deg);
+            top: -2px;
+        }
     }
 }
 
@@ -100,7 +117,7 @@ li, p, label {
     
     height: 2.5em;
     width: auto;
-    padding: 0 20px 0 20px;
+    padding: 0 15px 0 15px;
     border-radius: 10px;
     border: none;
 
@@ -114,10 +131,6 @@ li, p, label {
 
     &:hover {
         background: rgb(0, 0, 190);
-    }
-
-    &[aria-expanded="true"] {
-        
     }
 }
 

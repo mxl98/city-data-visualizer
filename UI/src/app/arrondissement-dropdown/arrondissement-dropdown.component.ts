@@ -74,6 +74,9 @@ export class ArrondissementDropdownComponent implements OnInit {
     this.isActive = !this.isActive;
     this.filterService.handleArrondissements(this.isActive);
     document.getElementById("dropdown-button")?.setAttribute("aria-expanded", this.isActive + "");
+
+    const arrow = document.getElementById("dropdown-arrow");
+    //this.isActive ? arrow?.classList.remove('hide') : arrow?.classList.add('hide');
   }
 
   onSubmit(): void {
