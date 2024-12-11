@@ -1,4 +1,4 @@
-<div class="filters">
+<div class="filters" role="nav">
     <form [formGroup]="filterForm" (ngSubmit)="onSubmit()">
         <button type="button" id="dropdown-button" class="nav-button" (click)="toggleDropdown();" aria-expanded="false">
             <span class="button-text">Arrondissements</span>
@@ -8,9 +8,11 @@
             <div class="checkbox-dropdown">
                 <div class="option-wrapper" *ngFor="let arrondissement of dropdownOptions">
                     <div id="option-wrapper-{{ arrondissement }}" class="l-padding-3">
-                        <label class="checkbox-container" for="checkbox-{{ arrondissement }}">
+                        <label id="option-label-{{ arrondissement }}" class="checkbox-container" for="checkbox-{{ arrondissement }}">
                             <span class="h3-primary checkbox-label">{{ arrondissement }}</span>
-                            <input type="checkbox" #checkbox id="checkbox-{{ arrondissement }}" [formControlName]="arrondissement" (change)="toggleSelectionBorder(arrondissement, checkbox.checked);">
+                            <input type="checkbox" #checkbox id="checkbox-{{ arrondissement }}" 
+                                [formControlName]="arrondissement" 
+                                (change)="toggleSelectionBorder(arrondissement, checkbox.checked);">
                             <span class="checkmark"></span>
                         </label>
                     </div>

@@ -44,8 +44,11 @@ export class ArrondissementDropdownComponent implements OnInit {
   toggleSelectionBorder(option: string, isChecked: boolean): void {
     const selectedOption = document.getElementById("option-wrapper-" + option);
     isChecked ? selectedOption?.classList.add('border') : selectedOption?.classList.remove('border');
+    selectedOption?.setAttribute("aria-selected", isChecked + "");
   }
 
+  // this is used because dynamic generation based on the full list
+  // generates render issues
   loadDropdownOptions(): void {
     this.dropdownOptions = [
       "Le Plateau-Mont-Royal",
@@ -71,12 +74,12 @@ export class ArrondissementDropdownComponent implements OnInit {
   }
 
   toggleDropdown(): void {
+    const button = document.getElementById("dropdown-button");
+
     this.isActive = !this.isActive;
     this.filterService.handleArrondissements(this.isActive);
-    document.getElementById("dropdown-button")?.setAttribute("aria-expanded", this.isActive + "");
-
-    const arrow = document.getElementById("dropdown-arrow");
-    //this.isActive ? arrow?.classList.remove('hide') : arrow?.classList.add('hide');
+    button?.setAttribute("aria-expanded", this.isActive + "");
+    button?.setAttribute("aria-pressed", this.isActive + "");
   }
 
   onSubmit(): void {
