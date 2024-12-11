@@ -68,7 +68,7 @@ li, p, label {
     height: 2.5em;
     width: auto;
     padding: 0 20px 0 20px;
-    border-radius: 20px;
+    border-radius: 10px;
     border: solid #eee;
 
     font-size: 16px;
@@ -86,6 +86,11 @@ li, p, label {
 
     &[aria-expanded="true"] {
         border: solid blue;
+        background: #ddd;
+
+        &:hover {
+            background: #ccc;
+        }
     }
 }
 
@@ -96,7 +101,7 @@ li, p, label {
     height: 2.5em;
     width: auto;
     padding: 0 20px 0 20px;
-    border-radius: 20px;
+    border-radius: 10px;
     border: none;
 
     font-size: 16px;

@@ -41,6 +41,11 @@ export class ArrondissementDropdownComponent implements OnInit {
     this.filterForm = this.fb.group(formControls);
   }
 
+  toggleSelectionBorder(option: string, isChecked: boolean): void {
+    const selectedOption = document.getElementById("option-wrapper-" + option);
+    isChecked ? selectedOption?.classList.add('border') : selectedOption?.classList.remove('border');
+  }
+
   loadDropdownOptions(): void {
     this.dropdownOptions = [
       "Le Plateau-Mont-Royal",
